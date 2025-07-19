@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}Consulta General{% endblock %}
+
+{% block content %}
+<h1>Consulta de Información</h1>
+
+<!-- Sección Clientes -->
+<h2>Clientes</h2>
+<div class="tabla-responsive">
+    <table class="lista">
+        <thead>
+            <tr>
+                <th>Nif</th>
+                <th>Nombres</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente[0] }}</td>
+                <td>{{ cliente[1] }}</td>
+                <td>{{ cliente[2] }}</td>
+                <td>{{ cliente[3] }}</td>
+                <td>
+                    <a href="{{ url_for('editar_cliente', nif=cliente[0]) }}" class="tabla-link editar">Editar</a>
+                    <a href="{{ url_for('eliminar_clientes', id=cliente[0]) }}" class="tabla-link eliminar">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Sección Coches -->
+<h2>Coches</h2>
+<div class="tabla-responsive">
+    <table class="lista">
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Color</th>
+                <th>Precio</th>
+                <th>Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for coche in coches %}
+            <tr>
+                <td>{{ coche[0] }}</td>
+                <td>{{ coche[1] }}</td>
+                <td>{{ coche[2] }}</td>
+                <td>{{ coche[3] }}</td>
+                <td>${{ coche[4] }}</td>
+                <td>
+                    {% if coche[5] %}
+                        {{ coche[5] }}
+                    {% else %}
+                        <i>Sin asignar</i>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('editar_coche', matricula=coche[0]) }}" class="tabla-link editar">Editar</a>
+                    <a href="{{ url_for('eliminar_coche', matricula=coche[0]) }}" class="tabla-link eliminar">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Sección Revisiones -->
+<h2>Revisiones</h2>
+<div class="tabla-responsive">
+    <table class="lista">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Matrícula</th>
+                <th>Modelo</th>
+                <th>Filtro</th>
+                <th>Aceite</th>
+                <th>Frenos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rev in revisiones %}
+            <tr>
+                <td>{{ rev[0] }}</td>
+                <td>{{ rev[1] }}</td>
+                <td>{{ rev[2] }}</td>
+                <td>{{ '✅' if rev[3] else '❌' }}</td>
+                <td>{{ '✅' if rev[4] else '❌' }}</td>
+                <td>{{ '✅' if rev[5] else '❌' }}</td>
+                <td>
+                    <a href="{{ url_for('editar_revision', codigo=rev[0]) }}" class="tabla-link editar">Editar</a>
+                    <a href="{{ url_for('eliminar_revision', codigo=rev[0]) }}" class="tabla-link eliminar">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

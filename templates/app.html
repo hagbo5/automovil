@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="container" >
+    <div class="transparente-contenedor">
+        <h1>
+            Bienvenido al Sistema de Gestión de Automóviles
+        </h1>
+        <p>
+            Administra clientes, coches y revisiones de manera sencilla y eficiente.<br>
+            Utiliza el menú superior para navegar entre las diferentes secciones.
+        </p>
+        <div>
+            <a href="{{ url_for('cliente') }}" class="tabla-link editar" style="font-size:1.1rem; padding: 18px 32px;">
+                Gestionar Clientes
+            </a>
+            
+            <a href="{{ url_for('consulta') }}" class="tabla-link editar" style="font-size:1.1rem; padding: 18px 32px;">
+                Consultar Información
+            </a>
+        </div>
+        <img src="{{ url_for('static', filename='mecanica1.jpg') }}" alt="Automóviles" style="margin-top:40px; max-width:350px; width:100%; border-radius:18px; box-shadow:0 4px 24px rgba(44,62,80,0.15);">
+    </div>
+</div>
+{% endblock %}

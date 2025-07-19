@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Registrar Revisión{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Registrar Revisión de Coche</h1>
+
+    <form action="{{ url_for('guardar_revision') }}" method="post">
+        <label>Coche (Matrícula - Modelo):</label>
+        <select name="matricula_coche" required>
+            {% for coche in coches %}
+            <option value="{{ coche[0] }}">{{ coche[0] }} - {{ coche[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label><input type="checkbox" name="filtro"> Filtro</label><br>
+        <label><input type="checkbox" name="aceite"> Aceite</label><br>
+        <label><input type="checkbox" name="frenos"> Frenos</label><br><br>
+
+        <button type="submit">Guardar Revisión</button>
+    </form>
+</div>
+{% endblock %}

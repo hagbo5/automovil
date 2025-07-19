@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Registrar Coche{% endblock %}
+
+{% block content %}
+  
+    <div class="container">
+        <h1>Registrar Coche</h1>
+        <form action="{{ url_for('guardar_coche') }}" method="post">
+            <label>Matrícula:</label>
+            <input type="number" name="matricula" required><br>
+
+            <label>Marca:</label>
+            <input type="text" name="marca" required><br>
+
+            <label>Modelo:</label>
+            <input type="text" name="modelo" required><br>
+
+            <label>Color:</label>
+            <input type="text" name="color" required><br>
+
+            <label>Precio:</label>
+            <input type="number" name="precio" step="0.01" required><br>
+
+            <label>Cliente:</label>
+            <select name="nif_cliente">
+                <option value="">-- Sin cliente --</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente[0] }}">{{ cliente[1] }} (NIF: {{ cliente[0] }})</option>
+                {% endfor %}
+            </select><br>
+
+            <button type="submit">Registrar Coche</button>
+        </form>
+    </div>
+{% endblock %}

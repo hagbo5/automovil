@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Formulario Clientes{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <h1>Formulario Clientes</h1>
+    <form action="/registrar" method="POST">
+        <label for="nif">Nif:</label>
+        <input type="number" id="nif" name="nif" required>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="direccion">Direccion:</label>
+        <input type="text" id="direccion" name="direccion" required>
+
+        <label for="telefono">Telefono:</label>
+        <input type="number" id="telefono" name="telefono" required>
+
+        <button type="submit">Guardar Cliente</button>
+    </form>
+</div>
+
+{% endblock %}
